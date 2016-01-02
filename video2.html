@@ -173,6 +173,9 @@
       composer.addPass( effectCopy );
 
       //
+      //
+      this.audioAnalyser = new AudioAnalyser('objects/audio/CHASING.m4a');
+      this.audioAnalyser.play(this.scene);
 
       window.addEventListener( 'resize', onWindowResize, false );
 
@@ -246,26 +249,26 @@
         material = materials[ i ];
 
         h = ( 360 * ( material.hue + time ) % 360 ) / 360;
-        material.color.setHSL( h, material.saturation, 0.5 );
+        material.color.setHSL( 0.63+(audioAnalyser.boost/1000), material.saturation, 0.5 );
 
       }
 
-      // if ( counter % 1000 > 200 ) {
-      //
-      //   for ( i = 0; i < cube_count; i ++ ) {
-      //
-      //     mesh = meshes[ i ];
-      //
-      //     mesh.rotation.x += 10 * mesh.dx;
-      //     mesh.rotation.y += 10 * mesh.dy;
-      //
-      //     mesh.position.x += 200 * mesh.dx;
-      //     mesh.position.y += 200 * mesh.dy;
-      //     mesh.position.z += 400 * mesh.dx;
-      //
-      //   }
-      //
-      // }
+      if ( counter % 1000 > 200 ) {
+
+        for ( i = 0; i < cube_count; i ++ ) {
+
+          mesh = meshes[ i ];
+
+          mesh.rotation.x += 2 * mesh.dx;
+          mesh.rotation.y += 2 * mesh.dy;
+
+          mesh.position.x += 100 * mesh.dx;
+          mesh.position.y += 100 * mesh.dy;
+          mesh.position.z += 150 * mesh.dx;
+
+        }
+
+      }
 
       if ( counter % 1000 === 0 ) {
 
